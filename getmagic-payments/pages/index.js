@@ -10,12 +10,18 @@ export default function Home() {
   const [publishableKey,setPublishableKey] = useState('')
 
   useEffect(() => {
+   try{
     fetch('api/keys',{
       method: 'GET',
       headers:{'content-type':'application/json'}
     })
     .then((res) => res.json())
-    .then((data) => setPublishableKey(data.publishableKey))})
+    .then((data) => setPublishableKey(data.publishableKey))
+   }
+   catch(err){console.log(err.message)}
+  }
+   
+  )
   if(!publishableKey) {return 'loading...!'}
 
 
